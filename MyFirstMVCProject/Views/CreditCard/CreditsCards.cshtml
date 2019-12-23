@@ -1,0 +1,77 @@
+﻿@using MyFirstMVCProject.Models;
+@model List<CreditCard>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div style="position:left;margin:0 auto;clear:left;height:auto;z-index: 0;text-align:center;">
+    
+    <h2 style="font-family: 'Fredericka the Great', cursive;color: brown;font-size: -webkit-xxx-large;">WELCOME</h2>
+            <table style="position:left;margin:0 auto;clear:left;height:auto;z-index: 0;text-align:center;" class="table">
+
+
+                <tr>
+                    <td>Id</td>
+                    <td>Numero Tarjeta</td>
+                    <td>Fecha caducidad</td>
+                    <td>Codigo Seguridad</td>
+                    <td>Pin</td>
+                    <td colspan="3">OPCIONES</td>
+                </tr>
+
+
+                @{ foreach (var element in @Model)
+                    {
+
+                                <tr>
+                                    <td>@element.Id</td>
+                                    <td>@element.NumeroTarjeta</td>
+                                    <td>@element.CodigoSeguridad</td>
+                                    <td>@element.FechaCaducidad</td>
+                                    <td>@element.Pin</td>
+
+                                    <td>
+                                        @using (Html.BeginForm("SeleccionarTarjeta", "CreditCard", FormMethod.Get))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.Hidden("Id", @element.Id)
+                                            <button type="submit" class="btn btn-success">VER MAS (JSON)</button>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        @using (Html.BeginForm("VistaActualizar", "CreditCard", FormMethod.Get))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.Hidden("Id", @element.Id)
+                                            <button type="submit" class="btn btn-primary">ACTUALIZAR</button>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        @using (Html.BeginForm("EliminarTarjeta", "CreditCard", FormMethod.Get))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.Hidden("Id", @element.Id)
+                                            <button type="submit" class="btn btn-danger">ELIMINAR</button>
+                                        }
+                                    </td>
+
+                                    
+
+                                </tr>
+                    };
+                }
+            </table>
+        
+
+
+
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+
+
+</div>
+

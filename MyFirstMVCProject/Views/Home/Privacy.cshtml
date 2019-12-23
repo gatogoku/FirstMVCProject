@@ -1,0 +1,102 @@
+﻿@using MyFirstMVCProject.Models;
+@model CreditCard
+
+@{
+    ViewData["Title"] = "Crear nueva tarjeta de credito";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+<style>
+    .credit-card-div span {
+        padding-top: 10px;
+    }
+
+    .credit-card-div img {
+        padding-top: 30px;
+    }
+
+    .credit-card-div .small-font {
+        font-size: 9px;
+    }
+
+    .credit-card-div .pad-adjust {
+        padding-top: 10px;
+    }
+</style>
+
+
+
+@using (Html.BeginForm("CrearTarjeta", "CreditCard", FormMethod.Post))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Hidden("Id", Model, new { htmlAttributes = new { @class = "hidden" } })
+                    <span class="help-block text-muted small-font"> Numero tarjeta</span><br />
+
+                    @Html.EditorFor(model => model.NumeroTarjeta, new { htmlAttributes = new { @class = "col-md-12" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <span class="help-block text-muted small-font"> Expiry Month</span>
+
+                    @Html.EditorFor(model => model.FechaCaducidad)
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <span class="help-block text-muted small-font">  Expiry Year</span><br />
+
+                    @Html.EditorFor(model => model.FechaCaducidad)
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <span class="help-block text-muted small-font">  CCV</span><br />
+                  
+                    @Html.EditorFor(model => model.CodigoSeguridad)
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <span class="help-block text-muted small-font">  Pin</span><br />
+
+                    @Html.TextBox("Pin", Model, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+            </div>
+
+
+            <div class="row" style="margin:50px;">
+                <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                    <input class="btn btn-danger" value="Cancelar" />
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust btn-block">
+                    <input type="submit" class="btn btn-warning btn-block" value="Crear registro" />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Use this page to detail your site's privacy policy.</p>
